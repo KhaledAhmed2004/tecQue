@@ -7,23 +7,10 @@ const Footer = () => {
         <p>
           &copy; 2024{" "}
           <span className="text-xs font-medium text-primary-blue">
-            TechTalk
+            TecQue
           </span>
           . All rights reserved.
         </p>
-        <a
-          href="/privacy"
-          className="text-secondary-text hover:text-primary-text transition-all duration-300 font-semibold"
-        >
-          Privacy Policy
-        </a>{" "}
-        <span className="text-primary-blue font-bold">|</span>{" "}
-        <a
-          href="/terms"
-          className="text-secondary-text hover:text-primary-text transition-all duration-300 font-semibold"
-        >
-          Terms of Service
-        </a>
       </div>
     </footer>
   );

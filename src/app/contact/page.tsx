@@ -1,10 +1,10 @@
 "use client";
-import Button from "@/components/Button";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { FaMapMarkerAlt, FaPhone, FaClock } from "react-icons/fa"; // Importing React Icons
+import { FaMapMarkerAlt, FaPhone, FaClock } from "react-icons/fa";
+import { motion } from "framer-motion"; // Import motion from framer-motion
 
-const page = () => {
+const ContactPage = () => {
   const [isFormVisible, setFormVisible] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -18,18 +18,37 @@ const page = () => {
     setFormVisible(true);
   }, []);
 
+  // Define animation variants for the main sections
+  const fadeInFromRight = {
+    initial: { opacity: 0, x: 100 },
+    animate: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5 }, // Place transition here
+    },
+  };
   return (
     <>
       <section className="container px-5 grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-primary-background py-8 lg:py-10 mx-auto">
-        <div className="h-full">
+        <motion.div
+          className="h-full"
+          variants={fadeInFromRight} // Use the defined animation
+          initial="initial"
+          animate="animate"
+        >
           <p className="mt-3 mb-12 text-lg text-primary-text dark:text-gray-200">
             Have questions or need help? Our team is here to assist you.
           </p>
           <ul className="mb-6 md:mb-0">
             {/* Contact Info Items */}
-            <li className="flex mb-4 transition-transform duration-300 hover:scale-105">
+            <motion.li
+              className="flex mb-4 transition-transform duration-300 hover:scale-105"
+              initial={{ opacity: 0, x: 100 }} // Start off-screen
+              animate={{ opacity: 1, x: 0 }} // Move to original position
+              transition={{ duration: 0.5, delay: 0.1 }} // Add delay for staggered effect
+            >
               <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-blue bg-blue-500 text-gray-50 transition ease-in duration-300">
-                <FaMapMarkerAlt className="h-6 w-6" /> {/* Map Icon */}
+                <FaMapMarkerAlt className="h-6 w-6" />
               </div>
               <div className="ml-4 mb-4">
                 <h3 className="mb-2 text-lg font-medium leading-6 text-primary-text dark:text-gray-200">
@@ -42,10 +61,16 @@ const page = () => {
                   Feni, Bangladesh
                 </p>
               </div>
-            </li>
-            <li className="flex mb-4 transition-transform duration-300 hover:scale-105">
+            </motion.li>
+
+            <motion.li
+              className="flex mb-4 transition-transform duration-300 hover:scale-105"
+              initial={{ opacity: 0, x: 100 }} // Start off-screen
+              animate={{ opacity: 1, x: 0 }} // Move to original position
+              transition={{ duration: 0.5, delay: 0.2 }} // Add delay for staggered effect
+            >
               <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-blue bg-blue-500 text-gray-50 transition ease-in duration-300">
-                <FaPhone className="h-6 w-6" /> {/* Phone Icon */}
+                <FaPhone className="h-6 w-6" />
               </div>
               <div className="ml-4 mb-4">
                 <h3 className="mb-2 text-lg font-medium leading-6 text-primary-text dark:text-gray-200">
@@ -58,10 +83,16 @@ const page = () => {
                   Email: support@drivenow.com
                 </p>
               </div>
-            </li>
-            <li className="flex mb-4 transition-transform duration-300 hover:scale-105">
+            </motion.li>
+
+            <motion.li
+              className="flex mb-4 transition-transform duration-300 hover:scale-105"
+              initial={{ opacity: 0, x: 100 }} // Start off-screen
+              animate={{ opacity: 1, x: 0 }} // Move to original position
+              transition={{ duration: 0.5, delay: 0.3 }} // Add delay for staggered effect
+            >
               <div className="flex h-10 w-10 items-center justify-center rounded bg-primary-blue bg-blue-500 text-gray-50 transition ease-in duration-300">
-                <FaClock className="h-6 w-6" /> {/* Clock Icon */}
+                <FaClock className="h-6 w-6" />
               </div>
               <div className="ml-4 mb-4">
                 <h3 className="mb-2 text-lg font-medium leading-6 text-primary-text dark:text-gray-200">
@@ -77,15 +108,19 @@ const page = () => {
                   Closed on Sundays
                 </p>
               </div>
-            </li>
+            </motion.li>
           </ul>
-        </div>
+        </motion.div>
 
-        <div
-          className={`w-full p-6 lg:p-8 shadow-lg rounded-xl bg-secondary-background transition-opacity duration-700 ${
-            isFormVisible ? "opacity-100" : "opacity-0"
-          }`}
+        <motion.div
+          className={`w-full p-6 lg:p-8 shadow-lg rounded-xl bg-secondary-background transition-opacity duration-700`}
           id="form"
+          initial={{ opacity: 0, x: 100 }} // Start off-screen
+          animate={{
+            opacity: isFormVisible ? 1 : 0,
+            x: isFormVisible ? 0 : 100,
+          }} // Animate based on visibility
+          transition={{ duration: 0.5 }} // Animation duration
         >
           <h2 className="text-2xl lg:text-3xl font-semibold text-center mb-3 text-primary-text">
             Reach Out to Us
@@ -136,12 +171,12 @@ const page = () => {
               </div>
             </div>
             <div className="text-center">
-              <Button className="w-full hover:bg-blue-700 transition duration-300">
+              <button className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-xl shadow-md transition duration-300 font-semibold">
                 Send Message
-              </Button>
+              </button>
             </div>
           </form>
-        </div>
+        </motion.div>
       </section>
 
       {/* Map Section */}
@@ -151,13 +186,13 @@ const page = () => {
         </h2>
         <div className="rounded-lg shadow-lg overflow-hidden">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3648.5475569046163!2d91.56612031522268!3d23.00042958470349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ad3aef88f47c3f%3A0x575d0a348b2a5944!2sFeni%20District%2C%20Bangladesh!5e0!3m2!1sen!2sus!4v1694829300827!5m2!1sen!2sus"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3648.5475569046163!2d91.56612031522268!3d23.00042958470349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30ad3aef88f47c3f%3A0x575d0fbbeb77a40d!2sReact%20Lane%2C%20Feni%2C%20Bangladesh!5e0!3m2!1sen!2sus!4v1634235873870!5m2!1sen!2sus"
             width="100%"
-            height="400"
+            height="350"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
-            title="Google Map of Feni"
+            title="Google Map Location"
           ></iframe>
         </div>
       </section>
@@ -165,4 +200,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ContactPage;
