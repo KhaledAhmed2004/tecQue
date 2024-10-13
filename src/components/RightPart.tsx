@@ -4,9 +4,10 @@ import Image from "next/image";
 import React from "react";
 import Button from "./Button";
 import Spinner from "./Spinner";
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaPlusCircle } from "react-icons/fa";
+import Link from "next/link";
 
-const Greeting = () => {
+const RightPart = () => {
   const { user, isLoading } = useMe();
   if (isLoading) return <Spinner />;
 
@@ -34,9 +35,15 @@ const Greeting = () => {
         >
           Go to {user?.role === "admin" ? "Dashboard" : "My Profile"}
         </Button>
+        <Link href={"/new-post"} passHref>
+          <div className="flex items-center justify-center space-x-2 bg-blue-600 text-white hover:bg-blue-500 transition duration-300 rounded-lg p-2 cursor-pointer shadow-md">
+            <FaPlusCircle className="text-lg" />
+            <span className="font-semibold">Create New Post</span>
+          </div>
+        </Link>
       </div>
     </div>
   );
 };
 
-export default Greeting;
+export default RightPart;

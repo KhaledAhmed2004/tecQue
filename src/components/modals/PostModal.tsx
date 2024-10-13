@@ -108,7 +108,7 @@ const PostModal: React.FC<PostModalProps> = ({
 
       try {
         const response = await axios.post(
-          "https://api.cloudinary.com/v1_1/djkdk03mf/image/upload",
+          "https://api.cloudinary.com/v1_1/dkfphaooa/image/upload",
           formData
         );
         return response.data.secure_url;
