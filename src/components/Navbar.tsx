@@ -7,14 +7,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosMenu } from "react-icons/io";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const { user } = useMe();
   const { logout } = useLogout();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const pathname = usePathname();
 
-  // Toggle between light and dark mode
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     if (darkMode) {
@@ -26,7 +27,6 @@ const Navbar = () => {
     }
   };
 
-  // Set theme based on saved preference on initial load
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "dark") {
@@ -41,52 +41,58 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white dark:bg-gray-800 shadow-lg py-4 transition-colors duration-300">
-      {/* <nav className="bg-blue-600 dark:bg-gray-800 shadow-lg py-4 transition-colors duration-300"> */}
       <div className="container mx-auto px-5">
         <div className="flex justify-between items-center">
-          <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
-              <Link
-                href="/"
-                className="text-3xl font-bold text-black dark:text-white transition"
-              >
-                TecQue
-              </Link>
-            </div>
+          {/* Logo */}
+          <div className="flex-shrink-0 flex items-center">
+            <Link
+              href="/"
+              className="text-3xl font-bold text-black dark:text-white transition"
+            >
+              TecQue
+            </Link>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-6">
-            <Link
-              href="/about"
-              className="text-black dark:text-white font-medium transition duration-300 relative group"
+          {/* Centered Desktop Menu */}
+          <div className="hidden md:flex items-center flex-1 justify-center gap-6">
+            {["/", "/about", "/contact"].map((path) => (
+              <Link
+                key={path}
+                href={path}
+                className={`text-black dark:text-white font-medium transition duration-300 relative group ${
+                  pathname === path ? "text-blue-600" : ""
+                }`}
+              >
+                {path === "/"
+                  ? "Home"
+                  : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+                <span
+                  className={`absolute bottom-0 left-0 w-full h-1 bg-blue-600 ${
+                    pathname === path ? "scale-x-100" : "scale-x-0"
+                  } group-hover:scale-x-100 transition-transform duration-300`}
+                ></span>
+              </Link>
+            ))}
+          </div>
+
+          {/* User Options and Dark Mode Toggle */}
+          <div className="hidden md:flex items-center gap-4">
+            <motion.button
+              onClick={toggleDarkMode}
+              className="text-2xl text-black dark:text-white transition-colors duration-300 hover:scale-110"
+              whileHover={{ rotate: 20 }}
+              whileTap={{ rotate: -20 }}
+              aria-label="Toggle Dark Mode"
             >
-              About
-              <span className="absolute bottom-0 left-0 w-full h-1 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-            </Link>
-            <Link
-              href="/contact"
-              className="text-black dark:text-white font-medium hover transition duration-300 relative group"
-            >
-              Contact
-              <span className="absolute bottom-0 left-0 w-full h-1 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-            </Link>
+              {darkMode ? <MdLightMode /> : <MdDarkMode />}
+            </motion.button>
             {user ? (
-              <>
-                <Link
-                  href="/"
-                  className="text-black dark:text-white font-medium transition duration-300 relative group"
-                >
-                  Home
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </Link>
-                <button
-                  onClick={() => logout()}
-                  className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-full shadow-md transition duration-300"
-                >
-                  Logout
-                </button>
-              </>
+              <button
+                onClick={() => logout()}
+                className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-full shadow-md transition duration-300"
+              >
+                Logout
+              </button>
             ) : (
               <Link
                 href="/sign-in"
@@ -95,17 +101,6 @@ const Navbar = () => {
                 Login
               </Link>
             )}
-
-            {/* Dark Mode Toggle */}
-            <motion.button
-              onClick={toggleDarkMode}
-              className="text-2xl text-black dark:text-white ml-4 transition-colors duration-300 hover:scale-110"
-              whileHover={{ rotate: 20 }}
-              whileTap={{ rotate: -20 }}
-              aria-label="Toggle Dark Mode"
-            >
-              {darkMode ? <MdLightMode /> : <MdDarkMode />}
-            </motion.button>
           </div>
 
           {/* Mobile Menu Toggle Button */}
@@ -128,54 +123,41 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="md:hidden  bg-white dark:bg-gray-800 px-5 py-4 rounded-b-lg space-y-4"
+            className="md:hidden bg-white dark:bg-gray-800 px-5 py-4 rounded-b-lg space-y-4"
           >
-            <Link
-              href="/about"
-              className="block text-black dark:text-white font-medium hover:text-yellow-300 transition duration-300 relative group"
-              onClick={toggleMobileMenu}
-            >
-              About
-              <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-            </Link>
-            <Link
-              href="/contact"
-              className="block text-black dark:text-white font-medium hover:text-yellow-300 transition duration-300 relative group"
-              onClick={toggleMobileMenu}
-            >
-              Contact
-              <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-            </Link>
+            {["/", "/about", "/contact"].map((path) => (
+              <Link
+                key={path}
+                href={path}
+                className={`block text-black dark:text-white font-medium transition duration-300 ${
+                  pathname === path ? "text-blue-600" : ""
+                }`}
+                onClick={toggleMobileMenu}
+              >
+                {path === "/"
+                  ? "Home"
+                  : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+              </Link>
+            ))}
             {user ? (
-              <>
-                <Link
-                  href="/feeds"
-                  className="block text-black dark:text-white font-medium hover:text-yellow-300 transition duration-300 relative group"
-                  onClick={toggleMobileMenu}
-                >
-                  Feeds
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-300 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                </Link>
-                <button
-                  onClick={() => {
-                    logout();
-                    toggleMobileMenu();
-                  }}
-                  className="w-full text-left px-4 py-2 bg-blue-600 text-black dark:text-white hover:bg-blue-500 rounded-md shadow-md transition duration-300"
-                >
-                  Logout
-                </button>
-              </>
+              <button
+                onClick={() => {
+                  logout();
+                  toggleMobileMenu();
+                }}
+                className="w-full text-left px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-md shadow-md transition duration-300"
+              >
+                Logout
+              </button>
             ) : (
               <Link
                 href="/sign-in"
-                className="block w-full text-left px-4 py-2 rounded-md shadow-md bg-blue-600 text-white hover:bg-blue-500 transition duration-300"
+                className="block w-full text-left px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-md shadow-md transition duration-300"
                 onClick={toggleMobileMenu}
               >
                 Login
               </Link>
             )}
-            {/* Dark Mode Toggle */}
             <motion.button
               onClick={toggleDarkMode}
               className="text-2xl text-white transition-colors duration-300 hover:scale-110"
