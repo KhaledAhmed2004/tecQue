@@ -8,6 +8,7 @@ import { RxCross2 } from "react-icons/rx";
 import { IoIosMenu } from "react-icons/io";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { usePathname } from "next/navigation";
+import Button from "./Button";
 
 const Navbar = () => {
   const { user } = useMe();
@@ -89,14 +90,14 @@ const Navbar = () => {
             {user ? (
               <button
                 onClick={() => logout()}
-                className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-full shadow-md transition duration-300"
+                className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-xl shadow-md transition duration-300 font-semibold"
               >
                 Logout
               </button>
             ) : (
               <Link
                 href="/sign-in"
-                className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-full shadow-md transition duration-300"
+                className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-xl shadow-md transition duration-300 font-semibold"
               >
                 Login
               </Link>
@@ -140,19 +141,19 @@ const Navbar = () => {
               </Link>
             ))}
             {user ? (
-              <button
+              <Button
+                className="font-semibold"
                 onClick={() => {
                   logout();
                   toggleMobileMenu();
                 }}
-                className="w-full text-left px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-md shadow-md transition duration-300"
               >
                 Logout
-              </button>
+              </Button>
             ) : (
               <Link
                 href="/sign-in"
-                className="block w-full text-left px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-md shadow-md transition duration-300"
+                className="block w-full text-left px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded-md shadow-md transition duration-300 font-semibold"
                 onClick={toggleMobileMenu}
               >
                 Login
