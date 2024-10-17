@@ -1,6 +1,5 @@
 "use client";
 import ErrorMessage from "@/components/ErrorMessage";
-import Greeting from "@/components/RightPart";
 import Post from "@/components/Post";
 import SearchFilter from "@/components/SearchFilter";
 import Spinner from "@/components/Spinner";
