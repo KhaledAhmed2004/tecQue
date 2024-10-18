@@ -4,12 +4,11 @@ import Provider from "@/utils/Provider";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/Footer";
-// import Spinner from "@/components/Spinner";
 // import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "TecQue",
-  description: "A platform for tec share knowledge.",
+  description: "A platform for tech knowledge sharing.",
 };
 
 export default function RootLayout({
@@ -19,16 +18,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
-        <main className="min-h-screen flex flex-col justify-between">
+      <body className="antialiased h-full">
+        <div className="flex flex-col h-screen">
           <Provider>
             <Navbar />
-            {/* <Suspense fallback={<Spinner />}>{children}</Suspense> */}
-            {children}
-            <Toaster />
+            <main className="flex-1">
+              {/* <Suspense fallback={<Spinner />}>{children}</Suspense> */}
+              {children}
+            </main>
             <Footer />
           </Provider>
-        </main>
+        </div>
+        <Toaster />
       </body>
     </html>
   );

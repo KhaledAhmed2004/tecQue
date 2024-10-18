@@ -29,7 +29,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center py-12 px-4 lg:px-8 bg-gradient-to-br from-blue-50 to-blue-100">
+    <section className="min-h-screen flex items-center justify-center py-12 px-4 lg:px-8">
       <div className="max-w-lg w-full p-8 lg:p-10 bg-white shadow-xl rounded-2xl">
         <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
           Sign Up
