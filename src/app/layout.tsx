@@ -19,10 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased h-full">
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen bg-gray-100">
           <Provider>
             <Navbar />
-            <main className="flex-1">
+            <main className="flex-1 p-6">
               {/* <Suspense fallback={<Spinner />}>{children}</Suspense> */}
               {children}
             </main>

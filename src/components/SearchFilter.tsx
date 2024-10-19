@@ -87,7 +87,6 @@ import React, { useState, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebounce } from "use-debounce";
 import { FaChevronLeft, FaChevronRight, FaSearch } from "react-icons/fa"; // Import FaSearch
-import Button from "./Button";
 
 const categoriesData = [
   { key: "software_development", label: "Software Development" },
@@ -166,7 +165,7 @@ const SearchFilter = () => {
   };
 
   return (
-    <div className="bg-white p-4">
+    <div className="bg-white p-4 rounded-3xl">
       <div className="mb-4 flex items-center relative">
         <FaSearch className="absolute left-4 text-gray-400" />
         {/* Search icon */}
@@ -192,9 +191,8 @@ const SearchFilter = () => {
         {/* Category list */}
         <div
           ref={categoryRef}
-          className="flex overflow-x-auto no-scrollbar space-x-3 py-3 mx-4" // Add margin to center
+          className="flex overflow-x-auto no-scrollbar space-x-3 py-3" // Add margin to center
         >
-          {/* All Categories button */}
           <button
             onClick={() => handleCategorySelect("all")}
             className={`px-4 py-2 whitespace-nowrap rounded-full text-sm font-medium border

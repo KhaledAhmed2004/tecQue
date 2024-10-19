@@ -104,7 +104,7 @@ const PostModal: React.FC<PostModalProps> = ({
     const imageUploads = acceptedFiles.map(async (file) => {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "cleancode");
+      formData.append("upload_preset", "kpfdlvon");
 
       try {
         const response = await axios.post(

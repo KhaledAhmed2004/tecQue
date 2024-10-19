@@ -10,10 +10,6 @@ const fadeInUp = {
   animate: { opacity: 1, y: 0 },
 };
 
-const cardHover = {
-  hover: { scale: 1.05, boxShadow: "0 10px 20px rgba(0, 0, 0, 0.15)" },
-};
-
 const AboutPage = () => {
   return (
     <div>

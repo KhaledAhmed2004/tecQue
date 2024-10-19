@@ -1,7 +1,7 @@
 "use client";
-import Followers from "@/components/Followers";
-import Following from "@/components/Following";
+import PostTable from "@/components/PostTable";
 import ProfileInfo from "@/components/ProfileInfo";
+import SearchFilter from "@/components/SearchFilter";
 import { useMe } from "@/hooks/auth/useMe";
 import React from "react";
 import { FaSpinner } from "react-icons/fa";
@@ -17,18 +17,17 @@ const UserDashboard = () => {
 
   return (
     <div className="">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* First Column */}
-        <div className="col-span-2 space-y-6">
-          <ProfileInfo user={user} />
-        </div>
-
-        {/* Second Column */}
-        <div className="col-span-1 space-y-6">
-          <Followers followers={user?.followers} />
-          <Following following={user?.following} />
-        </div>
+      <div className="col-span-2 space-y-6">
+        <ProfileInfo user={user} />
       </div>
+      <section className="py-3 px-4 lg:py-5 lg:px-0 max-w-8xl mx-auto">
+        <div className="space-y-4">
+          <SearchFilter />
+          <div className="overflow-x-auto">
+            <PostTable />
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

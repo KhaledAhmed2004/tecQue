@@ -113,11 +113,11 @@ const CreatePostPage: React.FC<PostModalProps> = ({ post }) => {
     const imageUploads = acceptedFiles.map(async (file) => {
       const formData = new FormData();
       formData.append("file", file);
-      formData.append("upload_preset", "cleancode");
+      formData.append("upload_preset", "kpfdlvon");
 
       try {
         const response = await axios.post(
-          "https://api.cloudinary.com/v1_1/djkdk03mf/image/upload",
+          "https://api.cloudinary.com/v1_1/dkfphaooa/image/upload",
           formData
         );
         return response.data.secure_url;
