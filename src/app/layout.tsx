@@ -18,11 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased h-full">
-        <div className="flex flex-col h-screen bg-gray-100">
+      <body className="antialiased h-full bg-gradient-to-r from-white to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="flex flex-col h-screen">
           <Provider>
             <Navbar />
-            <main className="flex-1 p-6">
+            <main className="flex-1 p-6 bg-gradient-to-r from-blue-50 to-white dark:from-gray-800 dark:to-gray-900">
               {/* <Suspense fallback={<Spinner />}>{children}</Suspense> */}
               {children}
             </main>

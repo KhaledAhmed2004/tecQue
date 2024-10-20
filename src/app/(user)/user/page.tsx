@@ -23,9 +23,7 @@ const UserDashboard = () => {
       <section className="py-3 px-4 lg:py-5 lg:px-0 max-w-8xl mx-auto">
         <div className="space-y-4">
           <SearchFilter />
-          <div className="overflow-x-auto">
-            <PostTable />
-          </div>
+          <PostTable />
         </div>
       </section>
     </div>

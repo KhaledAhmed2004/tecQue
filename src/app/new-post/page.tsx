@@ -290,7 +290,7 @@ const CreatePostPage: React.FC<PostModalProps> = ({ post }) => {
             loading={isUpdating || isCreating || loading}
             disabled={isUpdating || isCreating || loading}
           >
-            {post ? "Update Post" : "Create Post"}{" "}
+            {post ? "Update Post" : "Create Post"}
           </Button>
         </div>
       </form>
