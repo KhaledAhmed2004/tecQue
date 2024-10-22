@@ -122,10 +122,10 @@ const ContactPage = () => {
           }} // Animate based on visibility
           transition={{ duration: 0.5 }} // Animation duration
         >
-          <h2 className="text-2xl lg:text-3xl font-semibold text-center mb-3 text-primary-text">
+          <h2 className="text-2xl dark:text-white lg:text-3xl font-semibold text-center mb-3 text-primary-text">
             Reach Out to Us
           </h2>
-          <form onSubmit={handleSubmit}>
+          {/* <form onSubmit={handleSubmit}>
             <div className="mb-6">
               <div className="mx-0 mb-1 sm:mb-4">
                 <div className="mx-0 mb-1 sm:mb-4">
@@ -175,13 +175,62 @@ const ContactPage = () => {
                 Send Message
               </button>
             </div>
+          </form> */}
+           <form onSubmit={handleSubmit}>
+            <div className="mb-6">
+              <div className="mx-0 mb-1 sm:mb-4">
+                <label
+                  htmlFor="name"
+                  className="pb-1 text-xs uppercase tracking-wider dark:text-gray-300"
+                ></label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Your name"
+                  className="w-full mb-0.5 rounded-md shadow-sm focus:border-primary-blue dark:focus:border-blue-600 dark:bg-gray-800 dark:text-gray-200 border outline-none py-1.5 lg:py-2 px-3"
+                  name="name"
+                />
+              </div>
+              <div className="mx-0 mb-1 sm:mb-4">
+                <label
+                  htmlFor="email"
+                  className="pb-1 text-xs uppercase tracking-wider dark:text-gray-300"
+                ></label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Your email address"
+                  className="w-full mb-0.5 rounded-md shadow-sm focus:border-primary-blue dark:focus:border-blue-600 dark:bg-gray-800 dark:text-gray-200 border outline-none py-1.5 lg:py-2 px-3"
+                  name="email"
+                />
+              </div>
+              <div className="mx-0 mb-1 sm:mb-4">
+                <label
+                  htmlFor="textarea"
+                  className="pb-1 text-xs uppercase tracking-wider dark:text-gray-300"
+                ></label>
+                <textarea
+                  id="textarea"
+                  name="message"
+                  cols={30}
+                  rows={5}
+                  placeholder="Write your message..."
+                  className="w-full mb-0.5 rounded-md shadow-sm focus:border-primary-blue dark:focus:border-blue-600 dark:bg-gray-800 dark:text-gray-200 border outline-none py-1.5 lg:py-2 px-3"
+                ></textarea>
+              </div>
+            </div>
+            <div className="text-center">
+              <button className="px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white hover:bg-blue-500 dark:hover:bg-blue-600 rounded-xl shadow-md transition duration-300 font-semibold">
+                Send Message
+              </button>
+            </div>
           </form>
         </motion.div>
       </section>
 
       {/* Map Section */}
       <section className="container mx-auto mt-10 mb-8 p-4">
-        <h2 className="text-2xl font-semibold text-center mb-4 text-primary-text">
+        <h2 className="text-2xl dark:text-white font-semibold text-center mb-4 text-primary-text">
           Find Us Here
         </h2>
         <div className="rounded-lg shadow-lg overflow-hidden">
